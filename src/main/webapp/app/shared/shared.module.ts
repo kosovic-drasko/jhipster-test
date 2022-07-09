@@ -15,7 +15,7 @@ import { ItemCountComponent } from './pagination/item-count.component';
 import { JhMaterialModule } from './jh-material.module';
 
 @NgModule({
-  imports: [SharedLibsModule],
+  imports: [SharedLibsModule, JhMaterialModule],
   declarations: [
     FindLanguageFromKeyPipe,
     TranslateDirective,
@@ -42,6 +42,7 @@ import { JhMaterialModule } from './jh-material.module';
     SortByDirective,
     SortDirective,
     ItemCountComponent,
+    JhMaterialModule,
   ],
 })
 export class SharedModule {}
