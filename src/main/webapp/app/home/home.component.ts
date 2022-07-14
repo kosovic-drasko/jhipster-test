@@ -12,8 +12,8 @@ import { Account } from 'app/core/auth/account.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  showFiller = false;
   account: Account | null = null;
-
   private readonly destroy$ = new Subject<void>();
 
   constructor(private accountService: AccountService, private router: Router) {}
