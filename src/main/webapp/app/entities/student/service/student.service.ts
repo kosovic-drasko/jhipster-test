@@ -32,7 +32,7 @@ export class StudentService {
     return this.http.get<IStudent>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
+  query(req?: any): Observable<HttpResponse<IStudent[]>> {
     const options = createRequestOption(req);
     return this.http.get<IStudent[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
