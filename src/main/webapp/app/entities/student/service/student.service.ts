@@ -1,46 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { filter, from, Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IStudent, getStudentIdentifier } from '../student.model';
-
 export type EntityResponseType = HttpResponse<IStudent>;
 export type EntityArrayResponseType = HttpResponse<IStudent[]>;
-
 @Injectable({ providedIn: 'root' })
 export class StudentService {
-  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/students');
+  readonly source = from([
+    { name: 'Joe', age: 31 },
+    { name: 'Bob', age: 25 },
+  ]);
 
+  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/students');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
+  public getPerson(): Observable<any> {
+    return this.source.pipe(filter(person => person.age >= 30));
+  }
   create(student: IStudent): Observable<EntityResponseType> {
     return this.http.post<IStudent>(this.resourceUrl, student, { observe: 'response' });
   }
-
   update(student: IStudent): Observable<EntityResponseType> {
     return this.http.put<IStudent>(`${this.resourceUrl}/${getStudentIdentifier(student) as number}`, student, { observe: 'response' });
   }
-
   partialUpdate(student: IStudent): Observable<EntityResponseType> {
     return this.http.patch<IStudent>(`${this.resourceUrl}/${getStudentIdentifier(student) as number}`, student, { observe: 'response' });
   }
-
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IStudent>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
-
   query(req?: any): Observable<HttpResponse<IStudent[]>> {
     const options = createRequestOption(req);
     return this.http.get<IStudent[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
-
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
-
   addStudentToCollectionIfMissing(studentCollection: IStudent[], ...studentsToCheck: (IStudent | null | undefined)[]): IStudent[] {
     const students: IStudent[] = studentsToCheck.filter(isPresent);
     if (students.length > 0) {

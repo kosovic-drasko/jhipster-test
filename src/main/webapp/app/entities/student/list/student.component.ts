@@ -30,8 +30,15 @@ export class StudentComponent implements OnInit {
     });
   }
 
+  // loadRxj(): void {
+  //   this.studentService.query().pipe(filter(num =>num.name =='paris')).subscribe
+  //   // (val => console.log('Grad je ',val))
+  //   this.students = num.body ?? [];
+  // }
+
   ngOnInit(): void {
     this.loadAll();
+    this.getStudenti();
   }
 
   trackId(_index: number, item: IStudent): number {
@@ -46,6 +53,15 @@ export class StudentComponent implements OnInit {
       if (reason === 'deleted') {
         this.loadAll();
       }
+    });
+  }
+
+  getStudenti(): any {
+    this.studentService.getPerson().subscribe({
+      next: res => {
+        // eslint-disable-next-line no-console
+        console.log('T je', res);
+      },
     });
   }
 }
