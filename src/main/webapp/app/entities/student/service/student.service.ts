@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { filter, from, Observable } from 'rxjs';
+import { filter, from, map, Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
@@ -13,12 +13,15 @@ export class StudentService {
     { name: 'Joe', age: 31 },
     { name: 'Bob', age: 25 },
   ]);
-
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/students');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
-
   public getPerson(): Observable<any> {
-    return this.source.pipe(filter(person => person.age >= 30));
+    // return this.source.pipe(filter(person => person.age >= 30));
+    // return this.source.pipe(filter(person => person.age >= 30),map(person => person.age *30));
+    return this.source.pipe(
+      map(items => items) /* Don't forget to add this! */,
+      filter(item => item['name'] === 'ana')
+    );
   }
   create(student: IStudent): Observable<EntityResponseType> {
     return this.http.post<IStudent>(this.resourceUrl, student, { observe: 'response' });
