@@ -16,12 +16,16 @@ export class StudentService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/students');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
   public getPerson(): Observable<any> {
+    return this.source.pipe(
+      filter(person => person.age >= 30),
+      map(person => person.age * 10)
+    );
     // return this.source.pipe(filter(person => person.age >= 30));
     // return this.source.pipe(filter(person => person.age >= 30),map(person => person.age *30));
-    return this.source.pipe(
-      map(items => items) /* Don't forget to add this! */,
-      filter(item => item['name'] === 'ana')
-    );
+    // return this.source.pipe(
+    //   map(items => items) /* Don't forget to add this! */,
+    //   filter(item => item.name === 'ana')
+    // );
   }
   create(student: IStudent): Observable<EntityResponseType> {
     return this.http.post<IStudent>(this.resourceUrl, student, { observe: 'response' });
