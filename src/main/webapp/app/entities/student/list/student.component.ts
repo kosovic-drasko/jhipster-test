@@ -1,11 +1,9 @@
-import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IStudent } from '../student.model';
 import { StudentService } from '../service/student.service';
 import { StudentDeleteDialogComponent } from '../delete/student-delete-dialog.component';
-import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'jhi-student',
   templateUrl: './student.component.html',
