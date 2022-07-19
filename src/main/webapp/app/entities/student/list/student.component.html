@@ -1,12 +1,3 @@
-<!-- <div>
-  <ul>
-    <li *ngFor="let naziv of ime">
-<p>
-  {{naziv}}
-</p>
-    </li>
-  </ul>
-</div> -->
 <div>
   <h2 id="page-heading" data-cy="StudentHeading">
     <span jhiTranslate="jhipsterApp.student.home.title">Students</span>
@@ -55,6 +46,8 @@
           </td>
           <td>{{ student.name }}</td>
           <td>{{ student.age }}</td>
+          <th>{{ ukupno }}</th>
+
           <td class="text-end">
             <div class="btn-group">
               <button

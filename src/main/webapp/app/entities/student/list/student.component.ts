@@ -46,8 +46,16 @@ export class StudentComponent implements OnInit {
       },
     });
   }
+
+  getTotalProcjenjena(): any {
+    return (this.ukupno = this.students?.reduce((acc: any, value: any) => acc! + value!, 0));
+    // eslint-disable-next-line no-console
+    console.log('Uvecane godine ===========>  ', this.ukupno);
+  }
+
   ngOnInit(): void {
-    this.loadAll1();
+    this.loadAll();
+    this.getTotalProcjenjena();
     // this.getStudenti();
   }
   trackId(_index: number, item: IStudent): number {

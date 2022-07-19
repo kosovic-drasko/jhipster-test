@@ -81,6 +81,10 @@
     "@typescript-eslint/prefer-nullish-coalescing": "error",
     "@typescript-eslint/prefer-optional-chain": "error",
     "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+
+    " @typescript-eslint/no-unnecessary-type-assertion": "off",
+
     "arrow-body-style": "error",
     "curly": "error",
     "eqeqeq": ["error", "always", { "null": "ignore" }],
