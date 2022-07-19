@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IStudent } from '../student.model';
 import { StudentService } from '../service/student.service';
 import { StudentDeleteDialogComponent } from '../delete/student-delete-dialog.component';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'jhi-student',
   templateUrl: './student.component.html',
@@ -12,8 +13,12 @@ import { StudentDeleteDialogComponent } from '../delete/student-delete-dialog.co
 export class StudentComponent implements OnInit {
   students?: IStudent[];
   student_age?: number[];
+  student_name?: any[];
   isLoading = false;
+  ime?: string;
+  ukupno?: any;
   constructor(protected studentService: StudentService, protected modalService: NgbModal) {}
+
   loadAll(): void {
     this.isLoading = true;
     this.studentService.query().subscribe({
@@ -31,8 +36,15 @@ export class StudentComponent implements OnInit {
       next: res => {
         this.students = res;
         this.student_age = res.map(val => val.age! * 10);
-        // eslint-disable-next-line no-console
-        console.log('Studenti iz boota  ', this.student_age);
+        this.students = res.filter(val => val.name === this.ime);
+
+        this.ukupno = res.reduce((acc, productsdet) => acc + productsdet.age!, 0);
+        //eslint-disable-next-line no-console
+        console.log('Studenti iz boota ukupno godina======>>  ', this.ukupno);
+        //eslint-disable-next-line no-console
+        console.log('Studenti iz boota name je  ', this.students);
+        //eslint-disable-next-line no-console
+        console.log('Uvecane godine ===========>  ', this.student_age);
       },
     });
 
@@ -43,7 +55,7 @@ export class StudentComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadAll1();
-    this.getStudenti();
+    // this.getStudenti();
   }
   trackId(_index: number, item: IStudent): number {
     return item.id!;

@@ -1,3 +1,12 @@
+<!-- <div>
+  <ul>
+    <li *ngFor="let naziv of ime">
+<p>
+  {{naziv}}
+</p>
+    </li>
+  </ul>
+</div> -->
 <div>
   <h2 id="page-heading" data-cy="StudentHeading">
     <span jhiTranslate="jhipsterApp.student.home.title">Students</span>
@@ -7,7 +16,8 @@
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="jhipsterApp.student.home.refreshListLabel">Refresh List</span>
       </button>
-
+      <input type="text" class="form-control" [(ngModel)]="ime" />
+      <button class="btn btn-info" (click)="loadAll1()">nadji</button>
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
