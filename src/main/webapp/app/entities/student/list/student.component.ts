@@ -37,19 +37,14 @@ export class StudentComponent implements OnInit {
         this.students = res.filter(val => val.name === this.ime);
 
         this.ukupno = res.reduce((acc, productsdet) => acc + productsdet.age!, 0);
-        //eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.log('Studenti iz boota ukupno godina======>>  ', this.ukupno);
-        //eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.log('Studenti iz boota name je  ', this.students);
-        //eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.log('Uvecane godine ===========>  ', this.student_age);
       },
     });
-
-    // loadRxj(): void {
-    //   this.studentService.query().pipe(filter(num =>num.name =='paris')).subscribe
-    //   // (val => console.log('Grad je ',val))
-    //   this.students = num.body ?? [];
   }
   ngOnInit(): void {
     this.loadAll1();
@@ -61,7 +56,7 @@ export class StudentComponent implements OnInit {
   delete(student: IStudent): void {
     const modalRef = this.modalService.open(StudentDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.student = student;
-    // unsubscribe not needed because closed completes on modal close
+
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
         this.loadAll();
