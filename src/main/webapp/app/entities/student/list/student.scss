@@ -1,0 +1,42 @@
+tr {
+  cursor: pointer;
+}
+table {
+  width: 100%;
+}
+tr.mat-row:hover {
+  background-color: lightgrey;
+}
+tr {
+  cursor: pointer;
+}
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+tr mat-row {
+  font-weight: bold;
+}
+#delete {
+  color: red;
+}
+#edit {
+  color: green;
+}
+
+.container-search {
+  display: flex;
+
+  justify-content: flex-end;
+}
+.search-item {
+  margin-top: 10px;
+
+  width: 260px;
+}
+
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}

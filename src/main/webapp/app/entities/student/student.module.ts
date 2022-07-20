@@ -5,9 +5,10 @@ import { StudentDetailComponent } from './detail/student-detail.component';
 import { StudentUpdateComponent } from './update/student-update.component';
 import { StudentDeleteDialogComponent } from './delete/student-delete-dialog.component';
 import { StudentRoutingModule } from './route/student-routing.module';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  imports: [SharedModule, StudentRoutingModule],
+  imports: [SharedModule, StudentRoutingModule, MatTableModule],
   declarations: [StudentComponent, StudentDetailComponent, StudentUpdateComponent, StudentDeleteDialogComponent],
   entryComponents: [StudentDeleteDialogComponent],
 })
