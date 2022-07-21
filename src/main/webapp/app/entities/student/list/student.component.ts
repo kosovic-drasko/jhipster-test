@@ -50,6 +50,7 @@ export class StudentComponent implements OnInit {
         this.student_age = res.map(val => val.age! * 10);
         this.students = res.filter(val => val.name === this.ime);
         this.dataSource.data = res.filter(val => val.name === this.ime);
+        this.getTotalProcjenjena();
         // this.ukupno = res.reduce((acc, productsdet) => acc + productsdet.age!, 0);
         // eslint-disable-next-line no-console
         console.log('Studenti iz boota ukupno godina======>>  ', this.ukupno);
@@ -69,7 +70,7 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
-    this.getTotalProcjenjena();
+
     // this.getStudenti();
   }
   trackId(_index: number, item: IStudent): number {
