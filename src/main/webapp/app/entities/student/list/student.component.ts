@@ -34,6 +34,7 @@ export class StudentComponent implements OnInit {
         this.isLoading = false;
         this.students = res.body ?? [];
         this.dataSource.data = res.body ?? [];
+        this.getTotalProcjenjena();
         // eslint-disable-next-line no-console
         console.log(' ===========>  ', this.students);
       },
@@ -48,9 +49,8 @@ export class StudentComponent implements OnInit {
         this.students = res;
         this.student_age = res.map(val => val.age! * 10);
         this.students = res.filter(val => val.name === this.ime);
-        this.dataSource.data = res;
-
-        this.ukupno = res.reduce((acc, productsdet) => acc + productsdet.age!, 0);
+        this.dataSource.data = res.filter(val => val.name === this.ime);
+        // this.ukupno = res.reduce((acc, productsdet) => acc + productsdet.age!, 0);
         // eslint-disable-next-line no-console
         console.log('Studenti iz boota ukupno godina======>>  ', this.ukupno);
         // eslint-disable-next-line no-console
@@ -62,13 +62,13 @@ export class StudentComponent implements OnInit {
   }
 
   getTotalProcjenjena(): any {
-    return (this.ukupno = this.students?.reduce((acc: any, value: any) => acc! + value!, 0));
+    return (this.ukupno = this.dataSource.filteredData.map(t => t.age).reduce((acc, value) => acc! + value!, 0));
     // eslint-disable-next-line no-console
     console.log('Uvecane godine ===========>  ', this.ukupno);
   }
 
   ngOnInit(): void {
-    this.loadAll1();
+    this.loadAll();
     this.getTotalProcjenjena();
     // this.getStudenti();
   }
