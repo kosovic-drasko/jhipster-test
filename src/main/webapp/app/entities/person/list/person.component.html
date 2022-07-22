@@ -8,12 +8,7 @@
         <span jhiTranslate="jhipsterApp.person.home.refreshListLabel">Refresh List</span>
       </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-person"
-        [routerLink]="['/person/new']"
-      >
+      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary jh-create-entity create-person" (click)="add()">
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="jhipsterApp.person.home.createLabel"> Create a new Person </span>
       </button>

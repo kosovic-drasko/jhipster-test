@@ -1,3 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{ message }}</h4>
+</div>
+<div class="modal-body">
+  <div class="d-flex justify-content-center">
+    <div class="col-8">
+      <form name="editForm" role="form" novalidate [formGroup]="editForm">
+        <h2 id="jhi-person-heading" data-cy="PersonCreateUpdateHeading" jhiTranslate="jhipsterApp.person.home.createOrEditLabel">
+          Create or edit a Person
+        </h2>
+
+        <div>
+          <jhi-alert-error></jhi-alert-error>
+
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="jhipsterApp.person.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          </div>
+
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="jhipsterApp.person.age" for="field_age">Age</label>
+            <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Close</button>
+  <button type="button" (click)="add()" id="save-entity" data-cy="entityCreateSaveButton" class="btn btn-primary">
+    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+  </button>
+</div>
+
+<!--
+
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
@@ -41,4 +78,4 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->

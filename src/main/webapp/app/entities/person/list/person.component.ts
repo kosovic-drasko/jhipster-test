@@ -1,3 +1,4 @@
+import { PersonUpdateComponent } from './../update/person-update.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -45,6 +46,17 @@ export class PersonComponent implements OnInit {
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
         this.loadAll();
+      }
+    });
+  }
+
+  add(): void {
+    const modalRef = this.modalService.open(PersonUpdateComponent, { size: 'lg', backdrop: 'static' });
+    // modalRef.componentInstance.person = person;
+    // unsubscribe not needed because closed completes on modal close
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'deleted') {
+        this.isLoading = true;
       }
     });
   }
