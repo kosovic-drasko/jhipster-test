@@ -1,0 +1,20 @@
+{
+  "changelogDate": "20220722044133",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Person",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

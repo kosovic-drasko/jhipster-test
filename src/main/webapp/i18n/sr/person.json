@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "person": {
+      "home": {
+        "title": "People",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Person",
+        "createOrEditLabel": "Kreirajte ili izmenite Person",
+        "notFound": "No People found"
+      },
+      "created": "Kreiran je novi Person pod nazivom {{ param }}",
+      "updated": "Person pod nazivom {{ param }} je ažuriran",
+      "deleted": "Person pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Person pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Person"
+      },
+      "id": "ID",
+      "name": "Name",
+      "age": "Age"
+    }
+  }
+}
