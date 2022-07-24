@@ -38,14 +38,11 @@ export class PersonUpdateComponent {
   cancel(): void {
     this.activeModal.dismiss();
   }
-  // ngOnInit(): void {
-  // this.activatedRoute.data.subscribe(({ person }) => {
-  //   this.isSaving=false;
-
-  //     // eslint-disable-next-line no-console
-
-  //   });
-  // }
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ person }) => {
+      this.isSaving = false;
+    });
+  }
   save(): void {
     const person = this.createFromForm();
 
@@ -80,11 +77,11 @@ export class PersonUpdateComponent {
     };
   }
 
-  //   protected updateForm(person: IPerson): void {
-  //     this.editForm.patchValue({
-  //       id: person.id,
-  //       name: person.name,
-  //       age: person.age,
-  //     });
-  // }
+  protected updateForm(person: IPerson): void {
+    this.editForm.patchValue({
+      id: person.id,
+      name: person.name,
+      age: person.age,
+    });
+  }
 }

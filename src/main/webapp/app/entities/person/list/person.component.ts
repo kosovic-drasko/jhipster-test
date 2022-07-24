@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PersonService } from '../service/person.service';
 import { PersonDeleteDialogComponent } from '../delete/person-delete-dialog.component';
 import { IPerson } from '../person.model';
+import { PersonSaveComponent } from '../person-save/person-save.component';
 
 @Component({
   selector: 'jhi-person',
@@ -56,7 +57,7 @@ export class PersonComponent implements OnInit {
   }
 
   save(person: IPerson): void {
-    const modalRef = this.modalService.open(PersonUpdateComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(PersonSaveComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.person = person;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
