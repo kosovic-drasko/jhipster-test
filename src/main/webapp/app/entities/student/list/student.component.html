@@ -28,12 +28,12 @@
   <div class="table-responsive" id="entities" *ngIf="students && students.length > 0">
     <table mat-table [dataSource]="dataSource" matSort matSortStart="desc">
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="">Id</th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ime</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="">Ime</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>

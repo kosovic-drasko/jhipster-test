@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IPerson } from '../person.model';
 import { PersonService } from '../service/person.service';
 import { PersonDeleteDialogComponent } from '../delete/person-delete-dialog.component';
+import { IPerson } from '../person.model';
 
 @Component({
   selector: 'jhi-person',
@@ -14,6 +14,9 @@ import { PersonDeleteDialogComponent } from '../delete/person-delete-dialog.comp
 export class PersonComponent implements OnInit {
   people?: IPerson[];
   isLoading = false;
+  //  let data: any{
+  //     ime:'ana'
+  //    }
 
   constructor(protected personService: PersonService, protected modalService: NgbModal) {}
 
@@ -46,10 +49,22 @@ export class PersonComponent implements OnInit {
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
         this.loadAll();
+        // eslint-disable-next-line no-console
+        console.log('as');
       }
     });
   }
 
+  save(person: IPerson): void {
+    const modalRef = this.modalService.open(PersonUpdateComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.person = person;
+    // unsubscribe not needed because closed completes on modal close
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'deleted') {
+        this.loadAll();
+      }
+    });
+  }
   add(): void {
     const modalRef = this.modalService.open(PersonUpdateComponent, { size: 'lg', backdrop: 'static' });
     // modalRef.componentInstance.person = person;

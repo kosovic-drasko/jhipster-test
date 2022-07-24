@@ -4,9 +4,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IStudent } from '../student.model';
 import { StudentService } from '../service/student.service';
 import { StudentDeleteDialogComponent } from '../delete/student-delete-dialog.component';
-import { MatTableDataSource } from '@angular/material/table';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'jhi-student',
   templateUrl: './student.component.html',
@@ -35,7 +36,6 @@ export class StudentComponent implements OnInit {
         this.students = res.body ?? [];
         this.dataSource.data = res.body ?? [];
         this.getTotalProcjenjena();
-        // eslint-disable-next-line no-console
         console.log(' ===========>  ', this.students);
       },
       error: () => {

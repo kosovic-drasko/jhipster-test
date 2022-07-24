@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable no-console */
+import { Component } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,11 +15,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './person-update.component.html',
 })
 export class PersonUpdateComponent {
-  message? = '';
+  isSaving = false;
+  person?: IPerson;
+
   editForm = this.fb.group({
     id: [],
-    name: ['aa'],
-    age: [77],
+    name: [],
+    age: [],
   });
 
   constructor(
@@ -28,16 +31,44 @@ export class PersonUpdateComponent {
     protected fb: FormBuilder
   ) {}
 
-  add(): void {
-    const person = this.createFromForm();
-    this.personService.create(person).subscribe();
+  previousState(): void {
+    window.history.back();
+    console.log('ad');
   }
   cancel(): void {
     this.activeModal.dismiss();
   }
+  // ngOnInit(): void {
+  // this.activatedRoute.data.subscribe(({ person }) => {
+  //   this.isSaving=false;
 
-  poruka(): any {
-    this.message = 'mdmd';
+  //     // eslint-disable-next-line no-console
+
+  //   });
+  // }
+  save(): void {
+    const person = this.createFromForm();
+
+    this.subscribeToSaveResponse(this.personService.create(person));
+    console.log('ad');
+  }
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IPerson>>): void {
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
+      // next: () => this.onSaveSuccess(),
+      error: () => this.onSaveError(),
+    });
+  }
+
+  protected onSaveSuccess(): void {
+    this.previousState();
+  }
+
+  protected onSaveError(): void {
+    // Api for inheritance.
+  }
+
+  protected onSaveFinalize(): void {
+    this.isSaving = false;
   }
 
   protected createFromForm(): IPerson {
@@ -48,4 +79,12 @@ export class PersonUpdateComponent {
       age: this.editForm.get(['age'])!.value,
     };
   }
+
+  //   protected updateForm(person: IPerson): void {
+  //     this.editForm.patchValue({
+  //       id: person.id,
+  //       name: person.name,
+  //       age: person.age,
+  //     });
+  // }
 }
